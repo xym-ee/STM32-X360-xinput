@@ -36,49 +36,49 @@ struct _pin encoderPins[2];
 /* Declare port, pin and state of all buttons
 *
 */
-void declareButtonPins(){
-	digitalArray[0].port  = GPIOB;		digitalArray[0].pin  = GPIO_PIN_7;		digitalArray[0].state  = 0;		// A
-	digitalArray[1].port  = GPIOB;		digitalArray[1].pin  = GPIO_PIN_13;		digitalArray[1].state  = 0;		// B
-	digitalArray[2].port  = GPIOB;		digitalArray[2].pin  = GPIO_PIN_14;		digitalArray[2].state  = 0;		// X
-	digitalArray[3].port  = GPIOB;		digitalArray[3].pin  = GPIO_PIN_15;		digitalArray[3].state  = 0;		// Y
-	digitalArray[4].port  = GPIOB;		digitalArray[4].pin  = GPIO_PIN_10;		digitalArray[4].state  = 0;		// LB	
-	digitalArray[5].port  = GPIOB;		digitalArray[5].pin  = GPIO_PIN_11;		digitalArray[5].state  = 0;		// RB
-	digitalArray[6].port  = GPIOB;		digitalArray[6].pin  = GPIO_PIN_5;		digitalArray[6].state  = 0;		// L3
-	digitalArray[7].port  = GPIOB;		digitalArray[7].pin  = GPIO_PIN_6;		digitalArray[7].state  = 0;		// R3
-	digitalArray[8].port  = GPIOB;		digitalArray[8].pin  = GPIO_PIN_3;		digitalArray[8].state  = 0;		// START
-	digitalArray[9].port  = GPIOB;		digitalArray[9].pin  = GPIO_PIN_4;		digitalArray[9].state  = 0;		// BACK
-	digitalArray[10].port = GPIOB;		digitalArray[10].pin = GPIO_PIN_12;		digitalArray[10].state = 0;		// XBOX-LOGO
-	digitalArray[11].port = GPIOA;		digitalArray[11].pin = GPIO_PIN_8;		digitalArray[11].state = 0;		// D-UP	
-	digitalArray[12].port = GPIOA;		digitalArray[12].pin = GPIO_PIN_9;		digitalArray[12].state = 0;		// D-DOWN
-	digitalArray[13].port = GPIOA;		digitalArray[13].pin = GPIO_PIN_10;		digitalArray[13].state = 0;		// D-LEFT
-	digitalArray[14].port = GPIOA;		digitalArray[14].pin = GPIO_PIN_15;		digitalArray[14].state = 0;		// D-RIGHT
+void declareButtonPins(void){
+	digitalArray[0].port  = GPIOB;		digitalArray[0].pin  = GPIO_PIN_7;		digitalArray[0].state  = GPIO_PIN_RESET;		// A
+	digitalArray[1].port  = GPIOB;		digitalArray[1].pin  = GPIO_PIN_13;		digitalArray[1].state  = GPIO_PIN_RESET;		// B
+	digitalArray[2].port  = GPIOB;		digitalArray[2].pin  = GPIO_PIN_14;		digitalArray[2].state  = GPIO_PIN_RESET;		// X
+	digitalArray[3].port  = GPIOB;		digitalArray[3].pin  = GPIO_PIN_15;		digitalArray[3].state  = GPIO_PIN_RESET;		// Y
+	digitalArray[4].port  = GPIOB;		digitalArray[4].pin  = GPIO_PIN_10;		digitalArray[4].state  = GPIO_PIN_RESET;		// LB	
+	digitalArray[5].port  = GPIOB;		digitalArray[5].pin  = GPIO_PIN_11;		digitalArray[5].state  = GPIO_PIN_RESET;		// RB
+	digitalArray[6].port  = GPIOB;		digitalArray[6].pin  = GPIO_PIN_5;		digitalArray[6].state  = GPIO_PIN_RESET;		// L3
+	digitalArray[7].port  = GPIOB;		digitalArray[7].pin  = GPIO_PIN_6;		digitalArray[7].state  = GPIO_PIN_RESET;		// R3
+	digitalArray[8].port  = GPIOB;		digitalArray[8].pin  = GPIO_PIN_3;		digitalArray[8].state  = GPIO_PIN_RESET;		// START
+	digitalArray[9].port  = GPIOB;		digitalArray[9].pin  = GPIO_PIN_4;		digitalArray[9].state  = GPIO_PIN_RESET;		// BACK
+	digitalArray[10].port = GPIOB;		digitalArray[10].pin = GPIO_PIN_12;		digitalArray[10].state = GPIO_PIN_RESET;		// XBOX-LOGO
+	digitalArray[11].port = GPIOA;		digitalArray[11].pin = GPIO_PIN_8;		digitalArray[11].state = GPIO_PIN_RESET;		// D-UP	
+	digitalArray[12].port = GPIOA;		digitalArray[12].pin = GPIO_PIN_9;		digitalArray[12].state = GPIO_PIN_RESET;		// D-DOWN
+	digitalArray[13].port = GPIOA;		digitalArray[13].pin = GPIO_PIN_10;		digitalArray[13].state = GPIO_PIN_RESET;		// D-LEFT
+	digitalArray[14].port = GPIOA;		digitalArray[14].pin = GPIO_PIN_15;		digitalArray[14].state = GPIO_PIN_RESET;		// D-RIGHT
 }
 
 /* Declare port, pin of the analog inputs
 *
 */
-void declareAnalogPins(){
-	analogArray[0].port = GPIOA;		analogArray[1].pin = GPIO_PIN_0;		analogArray[1].state = 0;			// LEFT TRIGGER
-	analogArray[1].port = GPIOA;		analogArray[2].pin = GPIO_PIN_1;		analogArray[2].state = 0;			// RIGHT TRIGGER
-	analogArray[2].port = GPIOA;		analogArray[5].pin = GPIO_PIN_2;		analogArray[5].state = 0;			// X RIGHT STICK
-	analogArray[3].port = GPIOA;		analogArray[6].pin = GPIO_PIN_3;		analogArray[6].state = 0;			// Y RIGHT STICK
-	analogArray[4].port = GPIOA;		analogArray[3].pin = GPIO_PIN_4;		analogArray[3].state = 0;			// X LEFT STICK		
-	analogArray[5].port = GPIOA;		analogArray[4].pin = GPIO_PIN_5;		analogArray[4].state = 0;			// Y LEFT STICK		
+void declareAnalogPins(void){
+	analogArray[0].port = GPIOA;		analogArray[1].pin = GPIO_PIN_0;		analogArray[1].state = GPIO_PIN_RESET;			// LEFT TRIGGER
+	analogArray[1].port = GPIOA;		analogArray[2].pin = GPIO_PIN_1;		analogArray[2].state = GPIO_PIN_RESET;			// RIGHT TRIGGER
+	analogArray[2].port = GPIOA;		analogArray[5].pin = GPIO_PIN_2;		analogArray[5].state = GPIO_PIN_RESET;			// X RIGHT STICK
+	analogArray[3].port = GPIOA;		analogArray[6].pin = GPIO_PIN_3;		analogArray[6].state = GPIO_PIN_RESET;			// Y RIGHT STICK
+	analogArray[4].port = GPIOA;		analogArray[3].pin = GPIO_PIN_4;		analogArray[3].state = GPIO_PIN_RESET;			// X LEFT STICK		
+	analogArray[5].port = GPIOA;		analogArray[4].pin = GPIO_PIN_5;		analogArray[4].state = GPIO_PIN_RESET;			// Y LEFT STICK		
 	
 }
 
 /*	Declare port, pin of the encoder
 *
 */
-void declareEncoderPins(){
-	encoderPins[0].port = NULL;		encoderPins[0].pin = NULL;		encoderPins[0].state = 0;			// Encoder input A - interrupt pin
-	encoderPins[1].port = NULL;		encoderPins[1].pin = NULL;		encoderPins[1].state = 0;			// Encoder input B - normal input
+void declareEncoderPins(void){
+	encoderPins[0].port = NULL;		encoderPins[0].pin = NULL;		encoderPins[0].state = GPIO_PIN_RESET;			// Encoder input A - interrupt pin
+	encoderPins[1].port = NULL;		encoderPins[1].pin = NULL;		encoderPins[1].state = GPIO_PIN_RESET;			// Encoder input B - normal input
 }
 
 /*	Read/update buttons and potentiometer of the handrake
 *
 */
-void readButtons(){
+void readButtons(void){
 	int i = 0;
 	int state = 1;
 	uint8_t buttonArray[11] = {0,0,0,0,0,0,0,0,0,0,0};				// initialize array of buttons
@@ -116,7 +116,7 @@ void readButtons(){
 /*	Read input values from sticks and triggers
 *
 */
-void readAdcValues(){
+void readAdcValues(void){
 	
 	if( adcValueReady == 1 ){
 		rightTriggerValue = (uint8_t)map( rightTriggerValue_ADC, 0, 4040, 0, UINT8_MAX );
@@ -135,7 +135,7 @@ void readAdcValues(){
 /*	Update brake and throttle triggers
 *
 */
-void updateTriggers(){
+void updateTriggers(void){
 		
 	XINPUT_triggerUpdate(leftTriggerValue, rightTriggerValue);
 }
@@ -144,7 +144,7 @@ void updateTriggers(){
 *			LeftStick X-axis comes from steering wheel
 *			RightStick comes from potentiometers
 */
-void updateSticks(){
+void updateSticks(void){
 
 	XINPUT_stickUpdate(STICK_LEFT, xLeftStickValue, yLeftStickValue);
 	XINPUT_stickUpdate(STICK_RIGHT, xRightStickValue, yRightStickValue );

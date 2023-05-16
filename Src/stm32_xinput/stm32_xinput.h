@@ -56,14 +56,14 @@ extern int16_t yLeftStickValue;
 extern int16_t xRightStickValue;
 extern int16_t yRightStickValue;
 
-void declareButtonPins();
-void declareAnalogPins();
-void declareEncoderPins();
+void declareButtonPins(void);
+void declareAnalogPins(void);
+void declareEncoderPins(void);
 int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min, int32_t out_max);
-void readButtons();
-void updateTriggers();
-void updateSticks();
-void readAdcValues();
+void readButtons(void);
+void updateTriggers(void);
+void updateSticks(void);
+void readAdcValues(void);
 
 #ifdef __cplusplus
 }

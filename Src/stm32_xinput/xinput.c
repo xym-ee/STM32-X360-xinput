@@ -372,6 +372,7 @@ uint8_t XINPUT_receiveXinput()
 	//Packet not available return 0
 	else{return 0;}
 	*/
+    return 0;
 }
 
 /* Set the LED mode and pin settings
