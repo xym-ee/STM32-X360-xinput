@@ -37,7 +37,6 @@
 
 
 
-
 /* USER CODE BEGIN Includes */
 #include "xinput.h"
 #include "stm32_xinput.h"
@@ -51,13 +50,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 extern USBD_HandleTypeDef  *hUsbDevice_0;
-
+UART_HandleTypeDef huart2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-
+static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
 
@@ -91,7 +90,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USB_DEVICE_Init();
-
+MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
 //	
@@ -239,7 +238,46 @@ void MX_GPIO_Init(void)
 
 }
 
+/**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 100000;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_2;
+  huart2.Init.Parity = UART_PARITY_EVEN;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+//    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+  __HAL_UART_ENABLE_IT(&huart2,UART_IT_RXNE); 
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+
+
+
 /* USER CODE BEGIN 4 */
+
+
+
 
 /**	Encoder ISR
 *		Handles the encoder that control the steering wheel position

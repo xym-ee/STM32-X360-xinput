@@ -31,6 +31,7 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
+
 #include "stm32f1xx_hal.h"
 #include "stm32f1xx.h"
 #include "stm32f1xx_it.h"
@@ -161,7 +162,81 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
+/**
+  * @brief This function handles USART1 global interrupt.
+  */
+#include "sbus.h"
+extern UART_HandleTypeDef huart2;
+uint8_t uart1_rx_data;
 
+uint8_t byte[25];
+uint8_t data_count = 0;
+void USART2_IRQHandler(void)
+{
+  if (__HAL_UART_GET_FLAG(&huart2, UART_FLAG_RXNE) != RESET)
+  {
+    uart1_rx_data = (uint16_t) READ_REG(huart2.Instance->DR);
+      
+      
+    if (data_count == 0)
+    {
+        if (uart1_rx_data == 0x0F)
+        {
+            byte[0] = 0x0F;
+            data_count = 1;          
+        }
+        else
+        {
+            data_count = 0;
+        }
+    }
+      
+    else if (data_count>0 && data_count<=24)
+    {
+        byte[data_count] = uart1_rx_data;
+        data_count++;
+    }
+    
+    else
+    {
+        data_count = 0;
+        
+                    sbus.ch1  = (byte[1] >> 0 | byte[2] << 8) & 0x7FF;
+                    sbus.ch2  = (byte[2] >> 3 | byte[3] << 5) & 0x7FF;
+                    sbus.ch3  = (byte[3] >> 6 | byte[4] << 2 | byte[5] << 10) & 0x7FF;
+                    sbus.ch4  = (byte[5] >> 1 | byte[6] << 7) & 0x7FF;
+                    sbus.ch5  = (byte[6] >> 4 | byte[7] << 4) & 0x7FF;
+                    sbus.ch6  = (byte[7] >> 7 | byte[8] << 1 | byte[9] << 9) & 0x7FF;
+                    sbus.ch7  = (byte[9] >> 2 | byte[10] << 6) & 0x7FF;
+                    sbus.ch8  = (byte[10] >>5 | byte[11] << 3) & 0x7FF;
+                    sbus.ch9  = (byte[12] >>0 | byte[13] << 8) & 0x7FF;
+                    sbus.ch10 = (byte[13] >> 3 | byte[14] << 5) & 0x7FF;
+                    sbus.ch11 = (byte[14] >> 6 | (byte[15] << 2 ) | byte[16] << 10 ) & 0x07FF;
+                    sbus.ch12 = (byte[16] >> 1 | (byte[17] << 7 )) & 0x07FF;
+                    sbus.ch13 = (byte[17] >> 4 | (byte[18] << 4 )) & 0x07FF;
+                    sbus.ch14 = (byte[18] >> 7 | (byte[19] << 1 ) | byte[20] << 9 ) & 0x07FF;
+                    sbus.ch15 = (byte[20] >> 2 | (byte[21] << 6 )) & 0x07FF;
+                    sbus.ch16 = (byte[21] >> 5 | (byte[22] << 3 )) & 0x07FF;        
+        
+        
+        
+        
+        
+        
+//        printf("%x", byte[24]);
+            
+//        for (int i=0; i<25; i++)
+//        {
+//            printf("%02x ",byte[data_count]);
+//        }
+//        printf("\r\n");
+      
+    }
+       
+      
+
+  }
+}
 
 /**
 * @brief This function handles USB low priority or CAN RX0 interrupts.

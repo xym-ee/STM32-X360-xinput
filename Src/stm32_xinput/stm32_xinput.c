@@ -116,19 +116,24 @@ void readButtons(void){
 /*	Read input values from sticks and triggers
 *
 */
+
+#include "sbus.h"
+
 void readAdcValues(void){
-	
-	if( adcValueReady == 1 ){
-		rightTriggerValue = (uint8_t)map( rightTriggerValue_ADC, 0, 4040, 0, UINT8_MAX );
-		leftTriggerValue 	= (uint8_t)map( leftTriggerValue_ADC, 0, 4040, 0, UINT8_MAX );
+  
+  
+		rightTriggerValue = (uint8_t)map( sbus.rs, SBUS_CH_MIN, SBUS_CH_MAX, 0, UINT8_MAX );
+		leftTriggerValue 	= (uint8_t)map( sbus.ls, SBUS_CH_MIN, SBUS_CH_MAX, 0, UINT8_MAX );
 			
-		xRightStickValue = (int16_t)map( xRightStickValue_ADC, 0, 4040, INT16_MIN, INT16_MAX );
-		yRightStickValue = (int16_t)map( yRightStickValue_ADC, 0, 4040, INT16_MIN, INT16_MAX );							// 4040 is the max value that my adc presents with potentiometers
-		xLeftStickValue = (int16_t)map( xLeftStickValue_ADC, 0, 4040, INT16_MIN, INT16_MAX );
-		yLeftStickValue = (int16_t)map( yLeftStickValue_ADC, 0, 4040, INT16_MIN, INT16_MAX );
+
+//		rightTriggerValue = 0;
+//		leftTriggerValue 	= 0;
+
+		xRightStickValue = (int16_t)map( sbus.rh, SBUS_CH_MIN, SBUS_CH_MAX, INT16_MIN, INT16_MAX );
+		yRightStickValue = (int16_t)map( sbus.rv, SBUS_CH_MIN, SBUS_CH_MAX, INT16_MIN, INT16_MAX );							// 4040 is the max value that my adc presents with potentiometers
 		
-		adcValueReady = 0;
-	}
+    xLeftStickValue = (int16_t)map( sbus.lh, SBUS_CH_MIN, SBUS_CH_MAX, INT16_MIN, INT16_MAX );
+		yLeftStickValue = (int16_t)map( sbus.lv, SBUS_CH_MIN, SBUS_CH_MAX, INT16_MIN, INT16_MAX );
 	
 }
 
